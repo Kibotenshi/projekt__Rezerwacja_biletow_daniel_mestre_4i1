@@ -1,0 +1,281 @@
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background: #121212;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+h1 {
+  margin-bottom: 20px;
+}
+label,
+input {
+  margin: 5px;
+}
+.message-area {
+  margin: 15px auto;
+  padding: 10px;
+  min-height: 1.5em;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 5px;
+  opacity: 0.9;
+  transition: opacity 0.5s ease-in-out;
+}
+.message-area.hidden {
+  opacity: 0;
+}
+.message-area.info {
+  color: #ffffff;
+  background-color: #3498db;
+}
+.message-area.success {
+  color: #ffffff;
+  background-color: #4caf50;
+}
+.message-area.error {
+  color: #ffffff;
+  background-color: #e74c3c;
+}
+.ekran {
+  width: 60%;
+  margin: 20px auto;
+  height: 30px;
+  background: #eee;
+  color: black;
+  line-height: 30px;
+  border-radius: 10px;
+}
+.siedzenia {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+div.rzad {
+  display: grid;
+  gap: 30px;
+  justify-content: center;
+  grid-template-columns: repeat(var(--kolumny), 40px);
+}
+.rzad:nth-child(even) {
+  transform: translateX(15px);
+}
+.rzad:nth-child(odd) {
+  transform: translateX(-15px);
+}
+div.siedzenie {
+  width: 60px;
+  height: 60px;
+  background: #4caf50;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: white;
+}
+.siedzenie:hover:not(.reserved):not(.selected-normal):not(
+    .selected-discounted
+  ) {
+  background: #45a049;
+}
+.siedzenie.selected-normal {
+  background: #f1c40f;
+}
+.siedzenie.selected-discounted {
+  background: #3498db;
+}
+.siedzenie.reserved {
+  background: #e74c3c;
+  cursor: default;
+}
+.siedzenie.reserved.editable {
+  background: #ff6347;
+  cursor: pointer;
+}
+.siedzenie.reserved.editable:hover {
+  background: #c0392c;
+}
+.siedzenie.reserved.reserved-final {
+  background: #c0392b;
+  cursor: not-allowed !important;
+}
+.siedzenie.reserved.reserved-normal.editable,
+.siedzenie.reserved.reserved-discounted.editable {
+  background: #ff6347;
+}
+.siedzenie.reserved.reserved-normal.reserved-final,
+.siedzenie.reserved.reserved-discounted.reserved-final {
+  background: #c0392b;
+}
+.kontrolki {
+  margin-top: 20px;
+}
+#lista_ceny {
+  margin-top: 10px;
+}
+.lista-wyboru {
+  margin-top: 20px;
+}
+.reserved-summary {
+  margin-top: 30px;
+  padding: 15px;
+  border: 1px solid #4caf50;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+}
+.reserved-summary h2 {
+  color: #4caf50;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+#reserved_list {
+  text-align: left;
+  margin-bottom: 10px;
+}
+#reserved_total_price {
+  font-weight: bold;
+  margin-top: 10px;
+  color: #f1c40f;
+}
+#reserved_edit_instruction {
+  font-size: 0.9em;
+  color: #cccccc;
+  display: none;
+}
+#przycisk_zamowienia {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  display: none;
+}
+.popup-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+.popup-container.active {
+  display: flex;
+}
+.popup-content {
+  background-color: #282828;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  min-width: 250px;
+}
+.popup-content h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #4caf50;
+}
+.popup-content button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+.popup-content button.ticket-type-option[data-type="normal"] {
+  background-color: #f1c40f;
+  color: black;
+}
+.popup-content button.ticket-type-option[data-type="normal"]:hover {
+  background-color: #d4ac0d;
+}
+.popup-content button.ticket-type-option[data-type="discounted"] {
+  background-color: #3498db;
+  color: white;
+}
+.popup-content button.ticket-type-option[data-type="discounted"]:hover {
+  background-color: #2980b9;
+}
+#unreserve-button {
+  background-color: #e74c3c;
+  color: white;
+}
+#unreserve-button:hover {
+  background-color: #c0392b;
+}
+#change-type-button {
+  background-color: #4caf50;
+  color: white;
+}
+#change-type-button:hover {
+  background-color: #45a049;
+}
+.popup-content button.close-popup {
+  background-color: #555;
+  color: white;
+  margin-top: 20px;
+}
+.popup-content button.close-popup:hover {
+  background-color: #333;
+}
+#selection-options,
+#reserved-options {
+  display: none;
+}
+.color-legend {
+  margin-top: 20px;
+  text-align: center;
+  padding: 15px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+  display: inline-block;
+}
+.color-legend h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #cccccc;
+  font-size: 1.2em;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.9em;
+  color: white;
+}
+.color-swatch {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  margin-right: 8px;
+  border: 1px solid #555;
+}
+.available-swatch {
+  background-color: #4caf50;
+}
+.selected-normal-swatch {
+  background-color: #f1c40f;
+}
+.selected-discounted-swatch {
+  background-color: #3498db;
+}
+.reserved-editable-swatch {
+  background-color: #ff6347;
+}
+.reserved-final-swatch {
+  background-color: #c0392b;
+}

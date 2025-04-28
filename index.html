@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Rezerwacja Biletów w Kinie</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Rezerwacja miejsc w kinie</h1>
+
+    <div id="message-area" class="message-area"></div>
+    <div>
+        <label for="rzedy">Rzędy:</label>
+        <input type="number" id="rzedy" value="" min="1">
+        <label for="kolumny">Miejsc w rzędzie:</label>
+        <input type="number" id="kolumny" value="" min="1">
+        <button onclick="generuj_siedzenia(true)">Generuj salę</button>
+    </div>
+
+    <div id="ekran" class="ekran">Ekran</div>
+    <div id="siedzenia" class="siedzenia"></div>
+
+    <div class="kontrolki">
+        <div id="lista_ceny" class="lista_ceny">
+            <strong>Cennik:</strong><br>
+            Normalny: 25zł, Ulgowy: 15zł
+        </div>
+        <p id="instrukcja_wyboru">Kliknij na miejsce, aby wybrać rodzaj biletu</p>
+        <button id="rezerwacja_zamowienia" onclick="potwierdz_rezerwacje()">Zatwierdź rezerwację</button>
+    </div>
+
+    <div class="lista-wyboru" id="lista_wyboru"></div>
+    <div id="cal_cena"></div>
+    <div class="color-legend">
+      <h2>Legenda kolorów:</h2>
+      <div class="legend-item">
+          <span class="color-swatch available-swatch"></span>
+          <span class="legend-text">Wolne miejsce</span>
+      </div>
+      <div class="legend-item">
+          <span class="color-swatch selected-normal-swatch"></span>
+          <span class="legend-text">Wybrane (Normalny)</span>
+      </div>
+      <div class="legend-item">
+          <span class="color-swatch selected-discounted-swatch"></span>
+          <span class="legend-text">Wybrane (Ulgowy)</span>
+      </div>
+      <div class="legend-item">
+          <span class="color-swatch reserved-editable-swatch"></span>
+          <span class="legend-text">Zarezerwowane (ostatnia rezerwacja - edytowalne)</span>
+      </div>
+      <div class="legend-item">
+          <span class="color-swatch reserved-final-swatch"></span>
+          <span class="legend-text">Zarezerwowane (wcześniejsze rezerwacje - trwałe)</span>
+      </div>
+      </div>
+      <div class="reserved-summary" id="reserved_summary" style="display: none;">
+        <h2>Podsumowanie rezerwacji:</h2> <div class="reserved-group" id="current_reservation_group" style="display: none;">
+            <h3>Twoja rezerwacja (ostatnia):</h3> <div id="current_reserved_list"></div> <div id="current_reserved_total_price" style="font-weight: bold; margin-top: 5px; text-align: left;"></div>
+            <p id="reserved_edit_instruction">Kliknij na miejsce, aby anulować.</p>
+         </div>
+
+         <div class="reserved-group" id="other_reservations_group" style="display: none;">
+            <h3>Pozostałe rezerwacje:</h3> <div id="other_reserved_list"></div> <div id="other_reserved_total_price" style="font-weight: bold; margin-top: 5px; text-align: left;"></div>
+         </div>
+
+         <div id="total_all_reserved_price" style="font-weight: bold; margin-top: 10px; color: #f1c40f; text-align: left;"></div>
+     </div>
+
+    <button id="przycisk_zamowienia" onclick="rozp_nowe_zamowienie()">Nowe zamówienie</button>
+
+    <div id="ticket-type-popup" class="popup-container">
+        <div class="popup-content">
+            <div id="selection-options">
+                <h2>Wybierz typ biletu</h2>
+                <button class="ticket-type-option" data-type="normal">Normalny (25zł)</button>
+                <button class="ticket-type-option" data-type="discounted">Ulgowy (15zł)</button>
+            </div>
+            <div id="reserved-options" style="display: none;">
+                 <h2>Zarezerwowane miejsce</h2>
+                 <p id="reserved-seat-info"></p>
+                 <button id="unreserve-button">Anuluj rezerwację tego miejsca</button>
+            </div>
+             <button class="close-popup">Zamknij / Anuluj</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
