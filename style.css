@@ -115,7 +115,7 @@ div.siedzenie {
 .kontrolki {
   margin-top: 20px;
 }
-#lista_ceny {
+.price-list {
   margin-top: 10px;
 }
 .lista-wyboru {
@@ -278,4 +278,18 @@ div.siedzenie {
 }
 .reserved-final-swatch {
   background-color: #c0392b;
+}
+.legend-summary-container {
+  display: flex;
+  justify-content: center; 
+  gap: 40px;
+  margin-top: 30px;
+  flex-wrap: wrap; 
+  width: 100%;
+}
+.left-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  gap: 20px; 
 }
